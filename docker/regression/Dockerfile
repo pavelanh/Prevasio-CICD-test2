@@ -1,23 +1,3 @@
-# Prevasio-CICD-test2
-
-**_Multiple Dockerfiles_**
-
-**docker/mitrules/Dockerfile**
-
-FROM ubuntu:22.04\
-EXPOSE 1234\
-EXPOSE 1443\
-EXPOSE 1550\
-EXPOSE 3000\
-EXPOSE 7000\
-EXPOSE 8088\
-RUN apt-get update && apt-get install -y curl\
-COPY /ping.sh ping.sh\
-Run chmod +x ping.sh\
-CMD ["/bin/sh", "ping.sh"]
-
-**docker/regression/Dockerfile**
-
 FROM python:3.11-slim
 WORKDIR /app
 RUN pip install Flask
@@ -31,8 +11,8 @@ app = Flask(__name__)\n\
 print('Regression test for 🇵​​​​​🇷​​​​​🇪​​​​​🇻​​​​​🇦​​​​​🇸​​​​​🇮​​​​​🇴', file=sys.stderr)\n\
 @app.route('/')\n\
 def index():\n\
-urllib.request.urlretrieve('http://www.naenara.com.kp', 'bad_file.bin')\n\
-return render_template('main.html')" > ./main.py
+    urllib.request.urlretrieve('http://www.naenara.com.kp', 'bad_file.bin')\n\
+    return render_template('main.html')" > ./main.py
 RUN mkdir ./templates
 RUN echo "<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>\n\
 <title>Welcome to Prevasio!</title><link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>\n\
